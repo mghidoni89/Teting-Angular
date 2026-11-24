@@ -1,4 +1,7 @@
 <?php
+// Vecchi indirizzi del sito WordPress (/?page_id=..., /?p=...): inoltro alle nuove pagine
+require __DIR__ . '/includes/vecchio-sito.php';
+
 $pageTitle = 'Home';
 $pageDescription = 'Scuola dell\'infanzia paritaria FISM a San Pietro di Lavagno (VR): dal 1900 un ambiente familiare con cucina interna, un grande giardino e progetti per ogni bambino.';
 $activePage = 'home';

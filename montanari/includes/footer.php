@@ -20,10 +20,10 @@ $footerFull = $footerFull ?? false;
     <div>
       <p class="site-footer__title">La scuola</p>
       <ul>
-        <li><a href="la-scuola.html">Chi siamo</a></li>
-        <li><a href="la-giornata.html">La giornata</a></li>
-        <li><a href="iscrizioni.html">Iscrizioni</a></li>
-        <li><a href="contatti.html">Contatti</a></li>
+        <li><a href="<?= $base ?>la-scuola.html">Chi siamo</a></li>
+        <li><a href="<?= $base ?>la-giornata.html">La giornata</a></li>
+        <li><a href="<?= $base ?>iscrizioni.html">Iscrizioni</a></li>
+        <li><a href="<?= $base ?>contatti.html">Contatti</a></li>
       </ul>
     </div>
     <div>

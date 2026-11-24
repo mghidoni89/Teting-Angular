@@ -57,7 +57,11 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+main { flex: 1 0 auto; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 h1, h2, h3, h4 {
@@ -196,7 +200,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .quick { display: block; text-decoration: none; border-radius: var(--radius); padding: 28px; transition: transform .15s, box-shadow .15s; min-height: 100%; }
 .quick:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
 .quick .icon { width: 28px; height: 28px; margin-bottom: 22px; }
-.quick h3 { font-size: 1.35rem; margin-bottom: 8px; }
+.quick h2, .quick h3 { font-size: 1.35rem; margin-bottom: 8px; }
 .quick p { color: var(--ink-soft); font-size: .97rem; }
 
 /* ---------- Servizi ---------- */
@@ -360,6 +364,10 @@ a.contact-card:hover strong { color: var(--accent); }
 .alert--ok { background: var(--green-soft); color: #2e4a26; }
 .alert--error { background: var(--pink-soft); color: #7c2b1b; }
 .alert ul { margin-top: 6px; padding-left: 20px; list-style: disc; font-weight: 600; }
+
+/* Pagina 404 */
+.error-page { padding-bottom: 24px; }
+.error-page__links { margin-top: 36px; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: #d9d3cb; font-size: .95rem; margin-top: clamp(56px, 7vw, 96px); }

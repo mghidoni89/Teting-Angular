@@ -13,11 +13,22 @@ function e(string $s): string
 }
 
 $activePage = $activePage ?? '';
+
+// Percorso della cartella del sito (es. "/" in produzione, "/staging/montanari/" sul server di prova).
+// Serve per link e risorse che devono funzionare anche dalla pagina 404 a qualsiasi profondità.
+$base = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/') . '/';
+
+// Indirizzo assoluto della pagina e del sito, per l'anteprima sui social.
+$https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+$siteUrl = ($https ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'www.infanziamontanari.it') . $base;
+$pageFile = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php', '.php');
+$pageUrl = $siteUrl . ($pageFile === 'index' ? '' : $pageFile . '.html');
+$ogImage = $siteUrl . 'assets/img/' . ($ogImageFile ?? 'hero-bimbi.jpg');
 $menu = [
-    'scuola'     => ['La scuola', 'la-scuola.html'],
-    'giornata'   => ['La giornata', 'la-giornata.html'],
-    'iscrizioni' => ['Iscrizioni', 'iscrizioni.html'],
-    'contatti'   => ['Contatti', 'contatti.html'],
+    'scuola'     => ['La scuola', $base . 'la-scuola.html'],
+    'giornata'   => ['La giornata', $base . 'la-giornata.html'],
+    'iscrizioni' => ['Iscrizioni', $base . 'iscrizioni.html'],
+    'contatti'   => ['Contatti', $base . 'contatti.html'],
 ];
 $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\'Infanzia Carlo Montanari · Lavagno (VR)';
 ?>
@@ -29,11 +40,20 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
   <title><?= e($fullTitle) ?></title>
   <meta name="description" content="<?= e($pageDescription ?? '') ?>">
   <meta name="theme-color" content="#fef7ed">
-  <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <script src="assets/js/main.js" defer></script>
+  <?php if (!empty($noIndex)): ?><meta name="robots" content="noindex"><?php endif; ?>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="Scuola dell'Infanzia Carlo Montanari">
+  <meta property="og:title" content="<?= e($fullTitle) ?>">
+  <meta property="og:description" content="<?= e($pageDescription ?? '') ?>">
+  <meta property="og:url" content="<?= e($pageUrl) ?>">
+  <meta property="og:image" content="<?= e($ogImage) ?>">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="<?= $base ?>assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="<?= $base ?>assets/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="<?= $base ?>assets/css/style.css">
+  <link rel="icon" href="<?= $base ?>assets/img/favicon.svg" type="image/svg+xml">
+  <script src="<?= $base ?>assets/js/main.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
@@ -50,7 +70,7 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="index.html" aria-label="Scuola dell'Infanzia Carlo Montanari, vai alla home">
+    <a class="brand" href="<?= $base ?>index.html" aria-label="Scuola dell'Infanzia Carlo Montanari, vai alla home">
       <span class="brand__mark"><?= icon('home') ?></span>
       <span class="brand__text">
         <span class="brand__kicker">Scuola dell'infanzia</span>
@@ -69,7 +89,7 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
           <li><a href="<?= $href ?>"<?= $activePage === $key ? ' aria-current="page"' : '' ?>><?= e($label) ?></a></li>
         <?php endforeach; ?>
       </ul>
-      <a class="btn btn--primary btn--small main-nav__cta" href="iscrizioni.html">Iscrizioni 2027-28</a>
+      <a class="btn btn--primary btn--small main-nav__cta" href="<?= $base ?>iscrizioni.html">Iscrizioni 2027-28</a>
     </nav>
   </div>
 </header>

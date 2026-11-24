@@ -27,6 +27,20 @@ Lo fa `.htaccess` con `mod_rewrite` (serve Apache con `AllowOverride All`):
 
 Nei link interni si usa sempre la versione `.html`. Fa eccezione `invia.php`, che riceve il modulo e non è una pagina da visitare.
 
+## Server di prova e produzione
+
+L'`.htaccess` riconosce da solo dove si trova il sito:
+
+- **Su qualsiasi dominio diverso da infanziamontanari.it** (es. lo staging) invia l'header `X-Robots-Tag: noindex`, così Google non indicizza il sito di prova.
+- **Su infanziamontanari.it** porta tutto su `https://www.infanziamontanari.it` (HTTPS e www). Se il certificato HTTPS non è ancora attivo, commentare quelle righe (sono indicate nel file).
+
+Altri file per la produzione:
+
+- `404.php`: pagina di errore con la grafica del sito, mostrata per ogni indirizzo inesistente.
+- `robots.txt` e `sitemap.xml`: valgono solo nella cartella principale del dominio. Quando nascono nuove pagine, vanno aggiunte alla sitemap.
+- `includes/vecchio-sito.php`: inoltra i vecchi indirizzi WordPress (`/?page_id=106`, `/?p=65`...) alle nuove pagine. Quando nasceranno Servizi, Notizie, Privacy e Trasparenza, basta cambiare lì la destinazione.
+- Anteprima social (Open Graph): titolo, descrizione e immagine `assets/img/hero-bimbi.jpg` quando il sito viene condiviso.
+
 ## Modulo contatti
 
 Tutte le impostazioni sono in **`config.php`**: indirizzo che riceve i messaggi, mittente, oggetto e limiti antispam.

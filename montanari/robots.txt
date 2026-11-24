@@ -1,0 +1,6 @@
+# Funziona solo nella cartella principale del dominio (www.infanziamontanari.it/robots.txt).
+User-agent: *
+Disallow: /invia.php
+Disallow: /includes/
+
+Sitemap: https://www.infanziamontanari.it/sitemap.xml
