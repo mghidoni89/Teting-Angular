@@ -6,7 +6,7 @@ Sito in PHP semplice (nessun framework, nessun database). Basta un hosting con P
 
 | File | Pagina |
 |---|---|
-| `index.php` | Home |
+| `index.php` | Home (`index.html`) |
 | `la-scuola.php` | La scuola (chi siamo, metodo, organi e documenti) |
 | `la-giornata.php` | La giornata |
 | `iscrizioni.php` | Iscrizioni |
@@ -14,6 +14,18 @@ Sito in PHP semplice (nessun framework, nessun database). Basta un hosting con P
 | `invia.php` | Invio del modulo contatti (non è una pagina da visitare) |
 
 Header, footer, icone e mappa sono in `includes/` e sono condivisi da tutte le pagine.
+
+## Indirizzi .html
+
+Nel browser le pagine si vedono come `.html` (es. `contatti.html`), anche se i file sono `.php`.
+Lo fa `.htaccess` con `mod_rewrite` (serve Apache con `AllowOverride All`):
+
+- `pagina.html` esegue `pagina.php`;
+- `pagina.php` reindirizza in modo permanente (301) a `pagina.html`;
+- funziona in qualsiasi cartella, anche in sottocartelle come `/staging/montanari/`;
+- una nuova pagina `servizi.php` sarà raggiungibile subito come `servizi.html`, senza toccare `.htaccess`.
+
+Nei link interni si usa sempre la versione `.html`. Fa eccezione `invia.php`, che riceve il modulo e non è una pagina da visitare.
 
 ## Modulo contatti
 

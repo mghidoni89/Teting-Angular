@@ -17,7 +17,7 @@ $giornata = [
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumb" aria-label="Percorso"><a href="index.php">Home</a> / La giornata</nav>
+    <nav class="breadcrumb" aria-label="Percorso"><a href="index.html">Home</a> / La giornata</nav>
     <h1>Una giornata a scuola</h1>
     <p class="lead">Dal lunedì al venerdì, dalle 7:30 alle 16:00. Per chi ne ha bisogno c'è il tempo prolungato</p>
   </div>

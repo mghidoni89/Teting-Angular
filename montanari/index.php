@@ -14,8 +14,8 @@ require __DIR__ . '/includes/header.php';
         <h1>Crescere insieme, esplorando il mondo ogni giorno</h1>
         <p class="lead">Dal 1900 siamo il punto di riferimento per le famiglie di San Pietro di Lavagno: un ambiente familiare con cucina interna, un grande giardino e progetti pensati per valorizzare l'unicità di ogni bambino.</p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="contatti.php">Contatta la segreteria</a>
-          <a class="btn btn--outline" href="la-scuola.php">Scopri la scuola</a>
+          <a class="btn btn--primary" href="contatti.html">Contatta la segreteria</a>
+          <a class="btn btn--outline" href="la-scuola.html">Scopri la scuola</a>
         </div>
       </div>
       <div class="hero__media">
@@ -45,22 +45,22 @@ require __DIR__ . '/includes/header.php';
       </div>
     </div>
     <div class="grid grid--4">
-      <a class="quick bg-yellow" href="la-giornata.php">
+      <a class="quick bg-yellow" href="la-giornata.html">
         <?= icon('clock') ?>
         <h3>Orari e routine</h3>
         <p>Entrata, uscite, pranzo, nanna e prolungato</p>
       </a>
-      <a class="quick bg-pink" href="iscrizioni.php">
+      <a class="quick bg-pink" href="iscrizioni.html">
         <?= icon('calendar') ?>
         <h3>Iscrizioni e rette</h3>
         <p>Porte aperte, moduli, costi e info utili</p>
       </a>
-      <a class="quick bg-green" href="la-giornata.php#menu">
+      <a class="quick bg-green" href="la-giornata.html#menu">
         <?= icon('pot') ?>
         <h3>Menu e cucina</h3>
         <p>Pasti cucinati a scuola, menu stagionale</p>
       </a>
-      <a class="quick bg-blue" href="la-scuola.php#documenti">
+      <a class="quick bg-blue" href="la-scuola.html#documenti">
         <?= icon('file') ?>
         <h3>Documenti</h3>
         <p>PTOF, regolamento, calendario scolastico</p>
@@ -119,7 +119,7 @@ require __DIR__ . '/includes/header.php';
         <span class="eyebrow">Il nostro metodo</span>
         <h2>La regia educativa: il bambino al centro, l'insegnante accanto</h2>
         <p>Ambienti stimolanti e materiali accessibili, dove i bambini scelgono attività ed esperienze in autonomia, mentre le insegnanti osservano, accompagnano e progettano partendo dagli interessi di ciascuno.</p>
-        <a class="btn btn--yellow btn--small" href="la-giornata.php">Scopri la giornata tipo</a>
+        <a class="btn btn--yellow btn--small" href="la-giornata.html">Scopri la giornata tipo</a>
       </div>
       <ol class="steps-dark">
         <li><span>01</span> Spazi ed esperienze: arte, lettura e gioco</li>
@@ -139,8 +139,8 @@ require __DIR__ . '/includes/header.php';
         <p>Vieni a conoscerci alle porte aperte: 28 novembre 2026 e 16 gennaio 2027 dalle ore 10:00 alle ore 12:30</p>
       </div>
       <div class="btn-row">
-        <a class="btn btn--dark btn--small" href="iscrizioni.php">Come iscriversi</a>
-        <a class="btn btn--light btn--small" href="contatti.php">Contatta la segreteria</a>
+        <a class="btn btn--dark btn--small" href="iscrizioni.html">Come iscriversi</a>
+        <a class="btn btn--light btn--small" href="contatti.html">Contatta la segreteria</a>
       </div>
     </div>
   </div>
@@ -154,7 +154,7 @@ require __DIR__ . '/includes/header.php';
         <h2 class="h-section">Ultime notizie</h2>
       </div>
     </div>
-    <a class="news" href="iscrizioni.php">
+    <a class="news" href="iscrizioni.html">
       <div class="news__img">
         <img src="assets/img/porte-aperte.jpg" alt="" width="800" height="533" loading="lazy">
       </div>
@@ -179,7 +179,7 @@ require __DIR__ . '/includes/header.php';
           <li><?= icon('mail') ?> <a href="mailto:scmontanari@tiscali.it">scmontanari@tiscali.it</a></li>
           <li><?= icon('clock') ?> Segreteria: lunedì–venerdì, 9:00–12:00</li>
         </ul>
-        <a class="btn btn--primary btn--small" href="contatti.php#modulo">Scrivici</a>
+        <a class="btn btn--primary btn--small" href="contatti.html#modulo">Scrivici</a>
       </div>
       <?php require __DIR__ . '/includes/map.php'; ?>
     </div>

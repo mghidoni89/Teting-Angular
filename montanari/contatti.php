@@ -19,7 +19,7 @@ require __DIR__ . '/includes/header.php';
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumb" aria-label="Percorso"><a href="index.php">Home</a> / Contatti</nav>
+    <nav class="breadcrumb" aria-label="Percorso"><a href="index.html">Home</a> / Contatti</nav>
     <h1>Contatti</h1>
     <p class="lead">Chiamaci, scrivici o passa in segreteria: siamo felici di rispondere a ogni tua domanda.</p>
 

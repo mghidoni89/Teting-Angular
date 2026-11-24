@@ -7,7 +7,7 @@ require __DIR__ . '/includes/header.php';
 
 <section class="page-head">
   <div class="container">
-    <nav class="breadcrumb" aria-label="Percorso"><a href="index.php">Home</a> / La scuola</nav>
+    <nav class="breadcrumb" aria-label="Percorso"><a href="index.html">Home</a> / La scuola</nav>
     <h1>La nostra scuola</h1>
     <p class="lead">Una scuola dell'infanzia paritaria di ispirazione cristiana, federata FISM, che vuole essere «una comunità attiva e aperta al territorio e alle famiglie».</p>
     <nav class="pills" aria-label="Sezioni della pagina">

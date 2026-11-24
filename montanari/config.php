@@ -28,5 +28,5 @@ return [
     'max_messaggio' => 5000,
 
     // Pagina a cui tornare dopo l'invio.
-    'pagina_ritorno' => 'contatti.php',
+    'pagina_ritorno' => 'contatti.html',
 ];

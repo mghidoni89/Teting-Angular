@@ -9,7 +9,7 @@ require __DIR__ . '/includes/header.php';
   <div class="container">
     <div class="hero-yellow">
       <div>
-        <nav class="breadcrumb" aria-label="Percorso"><a href="index.php">Home</a> / Iscrizioni</nav>
+        <nav class="breadcrumb" aria-label="Percorso"><a href="index.html">Home</a> / Iscrizioni</nav>
         <h1>Iscrizioni anno scolastico 2027-28</h1>
         <p class="lead">Tutto quello che serve per iscrivere il tuo bambino, in quattro passaggi</p>
       </div>
@@ -17,7 +17,7 @@ require __DIR__ . '/includes/header.php';
         <span class="eyebrow">Prossime porte aperte</span>
         <h2>28 novembre 2026 e 16 gennaio 2027</h2>
         <p>ore 10:00 · Via Roma 9</p>
-        <a class="btn btn--dark btn--small" href="contatti.php">Contatta la segreteria</a>
+        <a class="btn btn--dark btn--small" href="contatti.html">Contatta la segreteria</a>
       </div>
     </div>
   </div>

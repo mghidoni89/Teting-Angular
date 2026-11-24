@@ -14,10 +14,10 @@ function e(string $s): string
 
 $activePage = $activePage ?? '';
 $menu = [
-    'scuola'     => ['La scuola', 'la-scuola.php'],
-    'giornata'   => ['La giornata', 'la-giornata.php'],
-    'iscrizioni' => ['Iscrizioni', 'iscrizioni.php'],
-    'contatti'   => ['Contatti', 'contatti.php'],
+    'scuola'     => ['La scuola', 'la-scuola.html'],
+    'giornata'   => ['La giornata', 'la-giornata.html'],
+    'iscrizioni' => ['Iscrizioni', 'iscrizioni.html'],
+    'contatti'   => ['Contatti', 'contatti.html'],
 ];
 $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\'Infanzia Carlo Montanari · Lavagno (VR)';
 ?>
@@ -50,7 +50,7 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="index.php" aria-label="Scuola dell'Infanzia Carlo Montanari, vai alla home">
+    <a class="brand" href="index.html" aria-label="Scuola dell'Infanzia Carlo Montanari, vai alla home">
       <span class="brand__mark"><?= icon('home') ?></span>
       <span class="brand__text">
         <span class="brand__kicker">Scuola dell'infanzia</span>
@@ -69,7 +69,7 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
           <li><a href="<?= $href ?>"<?= $activePage === $key ? ' aria-current="page"' : '' ?>><?= e($label) ?></a></li>
         <?php endforeach; ?>
       </ul>
-      <a class="btn btn--primary btn--small main-nav__cta" href="iscrizioni.php">Iscrizioni 2027-28</a>
+      <a class="btn btn--primary btn--small main-nav__cta" href="iscrizioni.html">Iscrizioni 2027-28</a>
     </nav>
   </div>
 </header>
