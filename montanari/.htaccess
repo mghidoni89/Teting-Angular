@@ -1,20 +1,24 @@
 # Pagina iniziale
 DirectoryIndex index.php
 
+# >>> NOINDEX
 # ---------------------------------------------------------------------------
 # Server di prova: niente indicizzazione su Google.
 # Vale su qualsiasi dominio diverso da infanziamontanari.it, quindi in
 # produzione si spegne da sola senza toccare nulla.
+# (Lo zip di staging sostituisce questo blocco con un noindex senza condizioni.)
 # ---------------------------------------------------------------------------
 <IfModule mod_headers.c>
   <If "%{HTTP_HOST} !~ /(^|\.)infanziamontanari\.it$/i">
     Header set X-Robots-Tag "noindex, nofollow"
   </If>
 </IfModule>
+# <<< NOINDEX
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # >>> SOLO-PRODUZIONE
   # -------------------------------------------------------------------------
   # Produzione: un solo indirizzo, https://www.infanziamontanari.it
   # Queste regole agiscono solo sul dominio della scuola (non sullo staging).
@@ -28,6 +32,7 @@ DirectoryIndex index.php
 
   RewriteCond %{HTTP_HOST} ^infanziamontanari\.it$ [NC]
   RewriteRule ^ https://www.infanziamontanari.it%{REQUEST_URI} [R=301,L]
+  # <<< SOLO-PRODUZIONE
 
   # -------------------------------------------------------------------------
   # Indirizzi in .html
@@ -63,6 +68,11 @@ DirectoryIndex index.php
 <Files "config.php">
   Require all denied
 </Files>
+
+# Documentazione interna (README.md ecc.) non visibile dal browser
+<FilesMatch "\.md$">
+  Require all denied
+</FilesMatch>
 
 # Niente elenco dei file nelle cartelle
 Options -Indexes
