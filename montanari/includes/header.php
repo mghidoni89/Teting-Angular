@@ -23,6 +23,8 @@ $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (($_SERVE
 $siteUrl = ($https ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'www.infanziamontanari.it') . $base;
 $pageFile = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php', '.php');
 $pageUrl = $siteUrl . ($pageFile === 'index' ? '' : $pageFile . '.html');
+// Fuori dal dominio della scuola (es. server di prova) le pagine non vanno indicizzate.
+$isProduction = (bool)preg_match('/(^|\.)infanziamontanari\.it$/i', $_SERVER['HTTP_HOST'] ?? '');
 $ogImage = $siteUrl . 'assets/img/' . ($ogImageFile ?? 'hero-bimbi.jpg');
 $menu = [
     'scuola'     => ['La scuola', $base . 'la-scuola.html'],
@@ -40,7 +42,7 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
   <title><?= e($fullTitle) ?></title>
   <meta name="description" content="<?= e($pageDescription ?? '') ?>">
   <meta name="theme-color" content="#fef7ed">
-  <?php if (!empty($noIndex)): ?><meta name="robots" content="noindex"><?php endif; ?>
+  <?php if (!empty($noIndex) || !$isProduction): ?><meta name="robots" content="noindex, nofollow"><?php endif; ?>
   <meta property="og:type" content="website">
   <meta property="og:locale" content="it_IT">
   <meta property="og:site_name" content="Scuola dell'Infanzia Carlo Montanari">
