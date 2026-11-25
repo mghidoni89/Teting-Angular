@@ -107,7 +107,9 @@ DirectoryIndex index.php
   # -------------------------------------------------------------------------
 
   # 1) Chi apre un vecchio indirizzo .php viene mandato alla versione .html.
-  #    Solo richieste GET dirette dal browser; invia.php (il modulo) resta escluso.
+  #    Solo richieste GET dirette dal browser, solo per file che esistono e solo al
+  #    primo passaggio (non dopo una riscrittura interna); invia.php resta escluso.
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
   RewriteCond %{REQUEST_METHOD} =GET
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteCond %{THE_REQUEST} \.php[\s?] [NC]
