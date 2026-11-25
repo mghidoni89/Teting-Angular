@@ -82,8 +82,8 @@ require __DIR__ . '/includes/header.php';
     <div class="card" id="documenti">
       <h2>Documenti</h2>
       <ul class="doc-list">
-        <li><a href="#"><span>PTOF 2025-2028</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
-        <li><a href="#"><span>Regolamento interno</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
+        <li><a href="assets/docs/ptof-2025-2028.pdf" target="_blank" rel="noopener"><span>PTOF 2025-2028</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
+        <li><a href="assets/docs/regolamento-interno-2026.pdf" target="_blank" rel="noopener"><span>Regolamento interno</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
         <li><a href="assets/docs/calendario-attivita-2026-27.pdf" target="_blank" rel="noopener"><span>Calendario scolastico 2026-27</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
       </ul>
     </div>

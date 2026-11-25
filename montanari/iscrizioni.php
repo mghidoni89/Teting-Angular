@@ -64,8 +64,8 @@ require __DIR__ . '/includes/header.php';
     <div class="card">
       <h2>Moduli da scaricare</h2>
       <ul class="doc-list">
-        <li><a href="#"><span>Domanda di iscrizione 2027-28</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
-        <li><a href="#"><span>Regolamento interno</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
+        <li><a href="assets/docs/domanda-iscrizione-2027-28.pdf" target="_blank" rel="noopener"><span>Domanda di iscrizione 2027-28</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
+        <li><a href="assets/docs/regolamento-interno-2026.pdf" target="_blank" rel="noopener"><span>Regolamento interno</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
       </ul>
     </div>
   </div>

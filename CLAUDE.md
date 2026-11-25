@@ -22,13 +22,13 @@ montanari/                IL SITO: è il contenuto di questa cartella che va sul
   invia.php               riceve il modulo e invia l'email (non è una pagina)
   404.php                 pagina di errore
   config.php              impostazioni del modulo contatti (destinatario, mittente...)
-  .htaccess               indirizzi .html, 404, HTTPS/www, noindex staging, protezioni
+  .htaccess               indirizzi .html, 404, HTTPS/www, noindex staging, protezioni,
+                          redirect dal vecchio WordPress (blocco VECCHIO-SITO)
   robots.txt, sitemap.xml per Google (validi solo in produzione)
   includes/header.php     <head>, barra superiore, menu (array $menu)
   includes/footer.php     footer completo (home) o compatto (pagine interne)
   includes/icons.php      icone SVG: icon('nome')
   includes/map.php        riquadro mappa Google (si carica dopo il consenso cookie)
-  includes/vecchio-sito.php  redirect 301 dai vecchi indirizzi WordPress (?page_id=, ?p=)
   includes/testi/          testi approvati di privacy e cookie policy
   includes/sovvenzioni.php dati delle sovvenzioni ricevute (Amministrazione trasparente)
   privacy.php, cookie.php, amministrazione-trasparente.php  pagine legali
@@ -47,6 +47,7 @@ montanari/                IL SITO: è il contenuto di questa cartella che va sul
 - **Indirizzi in .html.** Nel browser le pagine si chiamano `nome.html` ma i file sono `nome.php` (ci pensa `.htaccess`). Nei link interni usa SEMPRE `.html` (es. `href="iscrizioni.html"`). Unica eccezione: `action="invia.php"` del modulo.
 - **Header e footer** usano `$base` davanti ai link (`<?= $base ?>contatti.html`) perché devono funzionare anche dalla 404 in qualsiasi sottocartella. Nelle pagine normali i link relativi semplici vanno bene.
 - **`.htaccess`** contiene i marcatori `# >>> NOINDEX` / `# <<< NOINDEX` e `# >>> SOLO-PRODUZIONE` / `# <<< SOLO-PRODUZIONE`: servono a `strumenti/crea-zip.php` per generare la versione di staging. Non toglierli.
+- **Redirect dal vecchio sito**: tutti nel blocco `# >>> VECCHIO-SITO` di `.htaccess` (vecchi `?page_id=`, `?p=`, `?cat=` e PDF in `wp-content/uploads/`). È l'unica fonte: anche `strumenti/router.php` lo legge per l'anteprima locale. Usare sempre `%{ENV:CM_BASE}` davanti alla destinazione e i flag `[R=301,L,QSD]` (più `NE` se c'è un `#`).
 - **Non cambiare** il destinatario delle email in `config.php`, né le regole HTTPS/www, senza conferma esplicita.
 - **Nessun servizio esterno** senza consenso: niente Google Fonts, analytics o script di terzi. L'unico servizio esterno è la mappa di Google, caricata solo dopo il consenso nel banner cookie. Se se ne aggiunge uno, va gestito allo stesso modo e citato nella cookie policy.
 - **Testi accessibili**: un solo `<h1>` per pagina, `alt` sulle immagini con contenuto, `alt=""` su quelle decorative, contrasti adeguati.
@@ -105,13 +106,12 @@ Pagine online: Home, La scuola, La giornata, Iscrizioni, Contatti, Privacy polic
 
 - I testi di privacy e cookie policy sono in `includes/testi/` (approvati dalla scuola il 24/11/2026): modificarli solo su indicazione della scuola.
 - Le sovvenzioni ricevute sono in `includes/sovvenzioni.php` (un blocco per anno, il più recente in cima).
-- PDF in `assets/docs/`: calendario attività 2026-27, locandina porte aperte 2027-28, DL Sostegni bis, bilancio consuntivo 2020.
+- PDF in `assets/docs/`: domanda di iscrizione 2027-28 (scansione ricompressa da 8 a 4 MB), PTOF 2025-2028 (aggiornamento 2026/27), regolamento interno (edizione 2026), calendario attività 2026-27, locandina porte aperte 2027-28, DL Sostegni bis, bilancio consuntivo 2020.
 - Logo: `assets/img/logo-illustrazione.png` (solo il disegno, senza scritta, accanto al nome nell'header); favicon dalla casetta del logo (`favicon.ico`, `favicon.png`, `apple-touch-icon.png`).
 - Foto home: `assets/img/scuola-giardino.jpg` (foto reale della scuola, 2012).
 
 Da completare (dipende dai materiali della scuola):
 
-- PDF ancora da ricevere e collegare (ora `href="#"`): PTOF 2025-2028, Regolamento interno, Domanda di iscrizione 2027-28 → skill `/collega-documenti`.
 - Menu stagionale: tolto dal sito su richiesta della scuola (lo stanno rivedendo); quando arriva, ricollegarlo in La scuola (Documenti) e La giornata (riquadro Menu stagionale).
 - Link "Accessibilità" nel footer: ancora `#`.
 - Mittente email: in `config.php` `mittente` deve essere una casella del dominio (es. noreply@infanziamontanari.it), da verificare con un invio reale dopo la pubblicazione.

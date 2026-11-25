@@ -46,7 +46,7 @@ Per pagine di solo testo (privacy, cookie, trasparenza) usa una `.card` con tito
 2. **Footer**: in `includes/footer.php` aggiungi il link nella colonna giusta, oppure sostituisci il `href="#"` corrispondente (Privacy, Cookie, Amministrazione trasparente, Sovvenzioni, Bilancio, Accessibilità) con `<?= $base ?><nome>.html`. Ci sono due footer (completo e compatto): aggiorna entrambi dove il link compare.
 3. **Link nelle altre pagine**: per Servizi in home si può aggiungere `<a class="link-arrow" href="servizi.html">Scopri di più <?= icon('arrow') ?></a>` nella `.section-head` di "Servizi e laboratori"; per Notizie, "Tutte le notizie" nella sezione "Ultime notizie". Privacy: il link "informativa privacy" nel modulo di `contatti.php` e il link nel banner cookie in `includes/footer.php`.
 4. **Sitemap**: aggiungi una riga `<url>` in `montanari/sitemap.xml` con l'indirizzo `https://www.infanziamontanari.it/<nome>.html` (non per privacy/cookie).
-5. **Vecchio sito**: in `includes/vecchio-sito.php` cambia la destinazione delle voci che oggi puntano a `index.html` e corrispondono alla nuova pagina (i commenti indicano cosa erano: servizi, privacy, trasparenza...).
+5. **Vecchio sito**: nel blocco `# >>> VECCHIO-SITO` di `montanari/.htaccess` aggiungi una regola per i vecchi articoli che corrispondono alla nuova pagina (es. Servizi: `p=(65|243|58|62|255|310)`, oggi finiscono nella home tramite la regola generica). Mettila prima della regola generica, con destinazione `%{ENV:CM_BASE}<nome>.html` e flag `[R=301,L,QSD]`. Verifica con l'anteprima locale (`curl -sI "http://localhost:8080/?p=65"`).
 
 ## 3. Verifica
 

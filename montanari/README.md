@@ -38,7 +38,7 @@ Altri file per la produzione:
 
 - `404.php`: pagina di errore con la grafica del sito, mostrata per ogni indirizzo inesistente.
 - `robots.txt` e `sitemap.xml`: valgono solo nella cartella principale del dominio. Quando nascono nuove pagine, vanno aggiunte alla sitemap.
-- `includes/vecchio-sito.php`: inoltra i vecchi indirizzi WordPress (`/?page_id=106`, `/?p=65`...) alle nuove pagine. Quando nasceranno Servizi, Notizie, Privacy e Trasparenza, basta cambiare lì la destinazione.
+- Blocco `VECCHIO-SITO` in `.htaccess`: inoltra i vecchi indirizzi WordPress (`/?page_id=106`, `/?p=65`, `?cat=`...) e i vecchi PDF in `wp-content/uploads/` alle nuove pagine e ai documenti attuali.
 - Anteprima social (Open Graph): titolo, descrizione e immagine `assets/img/scuola-giardino.jpg` quando il sito viene condiviso.
 
 ## Modulo contatti
