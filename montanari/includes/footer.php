@@ -71,9 +71,24 @@ $footerFull = $footerFull ?? false;
   <div class="cookie-banner__inner">
     <p>Usiamo solo cookie tecnici. Con il tuo consenso carichiamo anche la mappa di Google Maps, che può installare cookie di terze parti. <a href="<?= $base ?>cookie.html">Cookie policy</a></p>
     <div class="cookie-banner__actions">
-      <button type="button" class="btn btn--ghost btn--small" data-consent="no">Solo necessari</button>
-      <button type="button" class="btn btn--primary btn--small" data-consent="yes">Accetta</button>
+      <button type="button" class="btn btn--ghost btn--small" data-consent="no">Rifiuta i non necessari</button>
+      <button type="button" class="btn btn--ghost btn--small" data-consent-customize aria-expanded="false" aria-controls="cookie-preferenze">Personalizza</button>
+      <button type="button" class="btn btn--primary btn--small" data-consent="yes">Accetta tutti</button>
     </div>
+    <form class="cookie-prefs" id="cookie-preferenze" hidden>
+      <fieldset>
+        <legend>Scegli quali cookie autorizzare</legend>
+        <label class="check">
+          <input type="checkbox" checked disabled>
+          <span><strong>Cookie tecnici</strong> – necessari al funzionamento del sito, sempre attivi.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="maps" id="consenso-maps">
+          <span><strong>Google Maps (terze parti)</strong> – mostra la mappa con la posizione della scuola; può installare cookie di Google.</span>
+        </label>
+      </fieldset>
+      <button type="submit" class="btn btn--primary btn--small">Salva le preferenze</button>
+    </form>
   </div>
 </div>
 </body>

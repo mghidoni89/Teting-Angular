@@ -45,18 +45,48 @@
     });
   }
 
+  // Revoca del consenso: toglie la mappa già caricata e rimette il segnaposto
+  function unloadMaps() {
+    document.querySelectorAll('.map[data-map-src]').forEach(function (box) {
+      var iframe = box.querySelector('iframe');
+      if (iframe) iframe.remove();
+      var ph = box.querySelector('.map__placeholder');
+      if (ph) ph.hidden = false;
+    });
+  }
+
+  var prefs = document.getElementById('cookie-preferenze');
+  var customize = document.querySelector('[data-consent-customize]');
+  var mapsBox = document.getElementById('consenso-maps');
+
+  function showPrefs(open) {
+    if (!prefs || !customize) return;
+    prefs.hidden = !open;
+    customize.setAttribute('aria-expanded', String(open));
+    if (open && mapsBox) mapsBox.checked = getConsent() === 'yes';
+  }
+
   function apply(value) {
     setConsent(value);
     if (banner) banner.hidden = true;
-    if (value === 'yes') loadMaps();
+    showPrefs(false);
+    if (value === 'yes') loadMaps(); else unloadMaps();
   }
 
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-consent]');
     if (btn) { apply(btn.getAttribute('data-consent')); return; }
+    if (e.target.closest('[data-consent-customize]')) { showPrefs(prefs.hidden); return; }
     var settings = e.target.closest('[data-cookie-settings]');
-    if (settings && banner) { e.preventDefault(); banner.hidden = false; }
+    if (settings && banner) { e.preventDefault(); banner.hidden = false; showPrefs(false); }
   });
+
+  if (prefs) {
+    prefs.addEventListener('submit', function (e) {
+      e.preventDefault();
+      apply(mapsBox && mapsBox.checked ? 'yes' : 'no');
+    });
+  }
 
   var current = getConsent();
   if (current === 'yes') loadMaps();

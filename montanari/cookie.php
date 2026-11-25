@@ -9,7 +9,7 @@ require __DIR__ . '/includes/header.php';
   <div class="container">
     <nav class="breadcrumb" aria-label="Percorso"><a href="index.html">Home</a> / Cookie policy</nav>
     <h1>Cookie policy</h1>
-    <p class="legal-updated">Ultimo aggiornamento: 24 novembre 2026</p>
+    <p class="legal-updated">Ultimo aggiornamento: 25 novembre 2026</p>
     <div class="btn-row" style="margin-top:24px">
       <button type="button" class="btn btn--outline btn--small" data-cookie-settings>Modifica le preferenze cookie</button>
     </div>
