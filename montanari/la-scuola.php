@@ -36,7 +36,7 @@ require __DIR__ . '/includes/header.php';
       </li>
       <li>
         <h3>Oggi</h3>
-        <p>86 bambini in 4 sezioni eterogenee, con convenzione comunale e rete territoriale</p>
+        <p>88 bambini in 4 sezioni eterogenee, con convenzione comunale e rete territoriale</p>
       </li>
     </ol>
   </div>
@@ -84,8 +84,7 @@ require __DIR__ . '/includes/header.php';
       <ul class="doc-list">
         <li><a href="#"><span>PTOF 2025-2028</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
         <li><a href="#"><span>Regolamento interno</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
-        <li><a href="#"><span>Calendario scolastico 2026-27</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
-        <li><a href="#"><span>Menu stagionale</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
+        <li><a href="assets/docs/calendario-attivita-2026-27.pdf" target="_blank" rel="noopener"><span>Calendario scolastico 2026-27</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
       </ul>
     </div>
   </div>

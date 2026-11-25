@@ -16,7 +16,7 @@ require __DIR__ . '/includes/header.php';
       <div class="openday">
         <span class="eyebrow">Prossime porte aperte</span>
         <h2>28 novembre 2026 e 16 gennaio 2027</h2>
-        <p>ore 10:00 · Via Roma 9</p>
+        <p>ore 10:00 · Via Roma 9<br>Entrata piazzale dietro Municipio</p>
         <a class="btn btn--dark btn--small" href="contatti.html">Contatta la segreteria</a>
       </div>
     </div>
@@ -66,7 +66,6 @@ require __DIR__ . '/includes/header.php';
       <ul class="doc-list">
         <li><a href="#"><span>Domanda di iscrizione 2027-28</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
         <li><a href="#"><span>Regolamento interno</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
-        <li><a href="#"><span>Informativa privacy</span><span><?= icon('download') ?>PDF · Scarica</span></a></li>
       </ul>
     </div>
   </div>
@@ -104,7 +103,7 @@ require __DIR__ . '/includes/header.php';
       <details>
         <summary>Posso iscrivermi anche durante l'anno?</summary>
         <div class="faq__answer">
-          <p>È possibile verificare in segreteria l'eventuale disponibilità di posti in corso d'anno: l'ingresso viene concordato valutando la capienza delle sezioni e organizzando un ambientamento graduale e rispettoso dei tempi del bambino e della famiglia</p>
+          <p>Di norma, le iscrizioni avvengono prima dell’inizio dell’anno scolastico e i posti disponibili sono generalmente già occupati. Eventuali inserimenti in corso d’anno possono essere presi in considerazione solo in casi eccezionali, attraverso una valutazione condivisa tra il Comitato, la coordinatrice e le insegnanti, tenendo conto della disponibilità di posti, dell’organizzazione delle sezioni e delle esigenze del bambino. Per maggiori informazioni è possibile rivolgersi alla segreteria.</p>
         </div>
       </details>
     </div>

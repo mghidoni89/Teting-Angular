@@ -29,6 +29,10 @@ montanari/                IL SITO: è il contenuto di questa cartella che va sul
   includes/icons.php      icone SVG: icon('nome')
   includes/map.php        riquadro mappa Google (si carica dopo il consenso cookie)
   includes/vecchio-sito.php  redirect 301 dai vecchi indirizzi WordPress (?page_id=, ?p=)
+  includes/testi/          testi approvati di privacy e cookie policy
+  includes/sovvenzioni.php dati delle sovvenzioni ricevute (Amministrazione trasparente)
+  privacy.php, cookie.php, amministrazione-trasparente.php  pagine legali
+  assets/docs/             PDF da scaricare
   assets/css/style.css    tutto lo stile
   assets/js/main.js       menu mobile, banner cookie, mappa
   assets/fonts/           Fraunces (titoli) e Nunito (testi), ospitati in locale
@@ -97,15 +101,21 @@ Le procedure passo passo sono negli skill: `/pubblica`, `/nuova-pagina`, `/aggio
 
 ## Stato attuale e cose da completare
 
-Pagine online: Home, La scuola, La giornata, Iscrizioni, Contatti. Rimandate a una fase successiva: **Servizi** e **Notizie** (tolte dal menu).
+Pagine online: Home, La scuola, La giornata, Iscrizioni, Contatti, Privacy policy (`privacy.php`), Cookie policy (`cookie.php`), Amministrazione trasparente (`amministrazione-trasparente.php`). Rimandate a una fase successiva: **Servizi** e **Notizie** (tolte dal menu).
+
+- I testi di privacy e cookie policy sono in `includes/testi/` (approvati dalla scuola il 24/11/2026): modificarli solo su indicazione della scuola.
+- Le sovvenzioni ricevute sono in `includes/sovvenzioni.php` (un blocco per anno, il più recente in cima).
+- PDF in `assets/docs/`: calendario attività 2026-27, locandina porte aperte 2027-28, DL Sostegni bis, bilancio consuntivo 2020.
+- Logo: `assets/img/logo-illustrazione.png` (solo il disegno, senza scritta, accanto al nome nell'header); favicon dalla casetta del logo (`favicon.ico`, `favicon.png`, `apple-touch-icon.png`).
+- Foto home: `assets/img/scuola-giardino.jpg` (foto reale della scuola, 2012).
 
 Da completare (dipende dai materiali della scuola):
 
-- PDF da collegare (ora `href="#"`): PTOF 2025-2028, Regolamento interno, Calendario 2026-27, Menu stagionale, Domanda di iscrizione 2027-28, Informativa privacy → skill `/collega-documenti`.
-- Pagine legali (link del footer ora `#`): Privacy policy, Cookie policy, Amministrazione trasparente, Sovvenzioni ricevute, Bilancio, Accessibilità.
-- Foto reali della scuola: `assets/img/hero-bimbi.jpg` (home) e `assets/img/porte-aperte.jpg` (notizia) sono foto di repertorio del vecchio sito.
+- PDF ancora da ricevere e collegare (ora `href="#"`): PTOF 2025-2028, Regolamento interno, Domanda di iscrizione 2027-28 → skill `/collega-documenti`.
+- Menu stagionale: tolto dal sito su richiesta della scuola (lo stanno rivedendo); quando arriva, ricollegarlo in La scuola (Documenti) e La giornata (riquadro Menu stagionale).
+- Link "Accessibilità" nel footer: ancora `#`.
 - Mittente email: in `config.php` `mittente` deve essere una casella del dominio (es. noreply@infanziamontanari.it), da verificare con un invio reale dopo la pubblicazione.
-- Date delle porte aperte: 28 novembre 2026 e 16 gennaio 2027 → dopo ogni data aggiornare con `/aggiorna-date`.
+- Date delle porte aperte: 28 novembre 2026 e 16 gennaio 2027 → dopo ogni data aggiornare con `/aggiorna-date` (anche la notizia in home con la locandina).
 
 La checklist condivisa con la scuola è nel documento "Nuovo sito Scuola Carlo Montanari – cosa manca per andare online".
 

@@ -15,8 +15,8 @@ $vecchiePagine = [
         85   => 'la-scuola.html#documenti',  // Documenti
         83   => 'contatti.html',             // URP
         1514 => 'iscrizioni.html',           // Porte aperte
-        87   => 'index.html',                // Privacy policy (pagina da creare)
-        1437 => 'index.html',                // Amministrazione trasparente (pagina da creare)
+        87   => 'privacy.html',              // Privacy policy
+        1437 => 'amministrazione-trasparente.html', // Amministrazione trasparente
     ],
     // ?p= (articoli)
     'p' => [
@@ -30,8 +30,10 @@ $vecchiePagine = [
         // Servizi (cucina, giardino, nanne, grest, psicomotricità, inglese): per ora in home
         65 => 'index.html', 243 => 'index.html', 58 => 'index.html',
         62 => 'index.html', 255 => 'index.html', 310 => 'index.html',
-        // Trasparenza (bilancio, sovvenzioni, DL sostegni bis): pagine da creare
-        1481 => 'index.html', 361 => 'index.html', 1473 => 'index.html',
+        // Trasparenza
+        361  => 'amministrazione-trasparente.html#sovvenzioni',
+        1473 => 'amministrazione-trasparente.html#sostegni-bis',
+        1481 => 'amministrazione-trasparente.html#bilancio',
     ],
 ];
 

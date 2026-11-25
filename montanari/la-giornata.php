@@ -46,12 +46,11 @@ $giornata = [
       <div class="aside-card bg-yellow">
         <h2>Calendario dell'anno</h2>
         <p>Inizio e fine attività, vacanze e chiusure.</p>
-        <a class="link-arrow" href="#">Scarica il calendario 2026-27 <?= icon('arrow') ?></a>
+        <a class="link-arrow" href="assets/docs/calendario-attivita-2026-27.pdf" target="_blank" rel="noopener">Scarica il calendario 2026-27 <?= icon('arrow') ?></a>
       </div>
       <div class="aside-card bg-green" id="menu">
         <h2>Menu stagionale</h2>
         <p>Tabelle dietetiche approvate ULSS e diete speciali su certificato.</p>
-        <a class="link-arrow" href="#">Vedi il menu <?= icon('arrow') ?></a>
       </div>
     </div>
   </div>

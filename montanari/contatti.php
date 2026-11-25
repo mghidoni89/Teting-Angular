@@ -84,7 +84,7 @@ require __DIR__ . '/includes/header.php';
         </div>
         <label class="check">
           <input type="checkbox" name="privacy" value="1" required>
-          <span>Ho letto l'<a href="#">informativa privacy</a> e acconsento al trattamento dei dati per ricevere una risposta.</span>
+          <span>Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa privacy</a> e acconsento al trattamento dei dati per ricevere una risposta.</span>
         </label>
         <div>
           <button type="submit" class="btn btn--primary">Invia messaggio</button>

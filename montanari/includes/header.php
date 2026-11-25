@@ -25,7 +25,7 @@ $pageFile = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php', '.php');
 $pageUrl = $siteUrl . ($pageFile === 'index' ? '' : $pageFile . '.html');
 // Fuori dal dominio della scuola (es. server di prova) le pagine non vanno indicizzate.
 $isProduction = (bool)preg_match('/(^|\.)infanziamontanari\.it$/i', $_SERVER['HTTP_HOST'] ?? '');
-$ogImage = $siteUrl . 'assets/img/' . ($ogImageFile ?? 'hero-bimbi.jpg');
+$ogImage = $siteUrl . 'assets/img/' . ($ogImageFile ?? $heroImage ?? 'scuola-giardino.jpg');
 $menu = [
     'scuola'     => ['La scuola', $base . 'la-scuola.html'],
     'giornata'   => ['La giornata', $base . 'la-giornata.html'],
@@ -54,7 +54,9 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
   <link rel="preload" href="<?= $base ?>assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="<?= $base ?>assets/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="<?= $base ?>assets/css/style.css">
-  <link rel="icon" href="<?= $base ?>assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="<?= $base ?>assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="<?= $base ?>assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="<?= $base ?>assets/img/apple-touch-icon.png">
   <script src="<?= $base ?>assets/js/main.js" defer></script>
 </head>
 <body>
@@ -73,7 +75,7 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
 <header class="site-header">
   <div class="container site-header__inner">
     <a class="brand" href="<?= $base ?>index.html" aria-label="Scuola dell'Infanzia Carlo Montanari, vai alla home">
-      <span class="brand__mark"><?= icon('home') ?></span>
+      <img class="brand__logo" src="<?= $base ?>assets/img/logo-illustrazione.png" alt="" width="91" height="72">
       <span class="brand__text">
         <span class="brand__kicker">Scuola dell'infanzia</span>
         <span class="brand__name">Carlo Montanari</span>

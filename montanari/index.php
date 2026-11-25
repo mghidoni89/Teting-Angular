@@ -23,7 +23,7 @@ require __DIR__ . '/includes/header.php';
       </div>
       <div class="hero__media">
         <div class="hero__blob">
-          <img src="assets/img/hero-bimbi.jpg" alt="Due bambini camminano mano nella mano su un ponticello di legno" width="1100" height="733" fetchpriority="high">
+          <img src="assets/img/scuola-giardino.jpg" alt="L'edificio della Scuola dell'Infanzia Carlo Montanari visto dal giardino" width="1100" height="825" fetchpriority="high">
         </div>
         <span class="hero__sun" aria-hidden="true"></span>
         <span class="hero__leaf" aria-hidden="true"></span>
@@ -31,7 +31,7 @@ require __DIR__ . '/includes/header.php';
     </div>
 
     <ul class="stats">
-      <li><p class="stat__num">86</p><p class="stat__label">bambini accolti</p></li>
+      <li><p class="stat__num">88</p><p class="stat__label">bambini accolti</p></li>
       <li><p class="stat__num">4</p><p class="stat__label">sezioni eterogenee</p></li>
       <li><p class="stat__num">7:30</p><p class="stat__label">apertura anticipata</p></li>
       <li><p class="stat__num">100%</p><p class="stat__label">cucina interna</p></li>
@@ -157,17 +157,20 @@ require __DIR__ . '/includes/header.php';
         <h2 class="h-section">Ultime notizie</h2>
       </div>
     </div>
-    <a class="news" href="iscrizioni.html">
-      <div class="news__img">
-        <img src="assets/img/porte-aperte.jpg" alt="" width="800" height="533" loading="lazy">
-      </div>
+    <article class="news">
+      <a class="news__img news__img--poster" href="assets/docs/locandina-porte-aperte-2027-28.pdf" target="_blank" rel="noopener">
+        <img src="assets/img/locandina-porte-aperte.jpg" alt="Locandina Open Day iscrizioni 2027-2028: sabato 28 novembre 2026 e 16 gennaio 2027 dalle 10:00 alle 12:30" width="760" height="1074" loading="lazy">
+      </a>
       <div class="news__body">
         <p class="news__meta">Eventi · 28 novembre 2026 e 16 gennaio 2027</p>
         <h3>Porte aperte: vieni a conoscere la scuola</h3>
         <p>Sabato 28 novembre 2026 e sabato 16 gennaio 2027, dalle 10:00 alle 12:30: una mattina per visitare gli spazi, conoscere l'offerta formativa e incontrare le insegnanti.</p>
-        <span class="link-arrow">Come iscriversi <?= icon('arrow') ?></span>
+        <div class="btn-row news__actions">
+          <a class="btn btn--primary btn--small" href="assets/docs/locandina-porte-aperte-2027-28.pdf" target="_blank" rel="noopener"><?= icon('download') ?> Scarica la locandina (PDF)</a>
+          <a class="link-arrow" href="iscrizioni.html">Come iscriversi <?= icon('arrow') ?></a>
+        </div>
       </div>
-    </a>
+    </article>
   </div>
 </section>
 
