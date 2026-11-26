@@ -1,0 +1,156 @@
+# Pagina iniziale
+DirectoryIndex index.php
+
+# >>> NOINDEX
+# ---------------------------------------------------------------------------
+# Server di prova: niente indicizzazione su Google.
+# Vale su qualsiasi dominio diverso da infanziamontanari.it, quindi in
+# produzione si spegne da sola senza toccare nulla.
+# (Lo zip di staging sostituisce questo blocco con un noindex senza condizioni.)
+# ---------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  <If "%{HTTP_HOST} !~ /(^|\.)infanziamontanari\.it$/i">
+    Header set X-Robots-Tag "noindex, nofollow"
+  </If>
+</IfModule>
+# <<< NOINDEX
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # >>> SOLO-PRODUZIONE
+  # -------------------------------------------------------------------------
+  # Produzione: un solo indirizzo, https://www.infanziamontanari.it
+  # Queste regole agiscono solo sul dominio della scuola (non sullo staging).
+  # Se l'hosting non ha ancora il certificato HTTPS, commentare le 4 righe
+  # che seguono finché non è attivo, altrimenti il sito non si apre.
+  # -------------------------------------------------------------------------
+  RewriteCond %{HTTP_HOST} (^|\.)infanziamontanari\.it$ [NC]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://www.infanziamontanari.it%{REQUEST_URI} [R=301,L]
+
+  RewriteCond %{HTTP_HOST} ^infanziamontanari\.it$ [NC]
+  RewriteRule ^ https://www.infanziamontanari.it%{REQUEST_URI} [R=301,L]
+  # <<< SOLO-PRODUZIONE
+
+  # >>> VECCHIO-SITO
+  # -------------------------------------------------------------------------
+  # Vecchio sito WordPress -> nuove pagine (redirect permanenti 301).
+  # Elenco ricavato dalle 9 pagine, 35 articoli, 16 categorie e 24 PDF del
+  # vecchio sito (novembre 2026). Funziona in qualsiasi cartella (anche staging).
+  # Quando nasce una nuova pagina (es. Servizi, Notizie), cambiare qui la
+  # destinazione delle voci che oggi vanno alla home.
+  # -------------------------------------------------------------------------
+
+  # Cartella del sito ("/" in produzione, "/staging/montanari/" in prova) -> CM_BASE
+  RewriteCond $0#%{REQUEST_URI} ^([^#]*)#(.*)\1$
+  RewriteRule ^.*$ - [E=CM_BASE:%2]
+
+  # Pagine (?page_id=)
+  RewriteCond %{QUERY_STRING} (^|&)page_id=106(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}la-scuola.html [R=301,L,QSD]
+  RewriteCond %{QUERY_STRING} (^|&)page_id=85(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}la-scuola.html#documenti [R=301,L,QSD,NE]
+  RewriteCond %{QUERY_STRING} (^|&)page_id=83(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}contatti.html [R=301,L,QSD]
+  RewriteCond %{QUERY_STRING} (^|&)page_id=1514(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}iscrizioni.html [R=301,L,QSD]
+  RewriteCond %{QUERY_STRING} (^|&)page_id=87(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}privacy.html [R=301,L,QSD]
+  RewriteCond %{QUERY_STRING} (^|&)page_id=1437(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}amministrazione-trasparente.html [R=301,L,QSD]
+
+  # Articoli (?p=)
+  # Porte aperte (2019-2026)
+  RewriteCond %{QUERY_STRING} (^|&)p=(1654|1637|1588|1509|1364|356)(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}iscrizioni.html [R=301,L,QSD]
+  # I nostri orari
+  RewriteCond %{QUERY_STRING} (^|&)p=54(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}la-giornata.html [R=301,L,QSD]
+  # Segreteria
+  RewriteCond %{QUERY_STRING} (^|&)p=56(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}contatti.html [R=301,L,QSD]
+  # Progettazione
+  RewriteCond %{QUERY_STRING} (^|&)p=258(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}la-scuola.html#metodo [R=301,L,QSD,NE]
+  # Collaboratori dei laboratori
+  RewriteCond %{QUERY_STRING} (^|&)p=(273|271|268|263|51)(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}la-scuola.html [R=301,L,QSD]
+  # Trasparenza: sovvenzioni, DL Sostegni bis, bilancio
+  RewriteCond %{QUERY_STRING} (^|&)p=361(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}amministrazione-trasparente.html#sovvenzioni [R=301,L,QSD,NE]
+  RewriteCond %{QUERY_STRING} (^|&)p=1473(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}amministrazione-trasparente.html#sostegni-bis [R=301,L,QSD,NE]
+  RewriteCond %{QUERY_STRING} (^|&)p=1481(&|$)
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE}amministrazione-trasparente.html#bilancio [R=301,L,QSD,NE]
+  # Servizi (cucina 65, giardino 243, nanne 58, grest 62, psicomotricità 255,
+  # inglese 310), incontri, feste, avvisi e tutto il resto: per ora la home
+  RewriteCond %{QUERY_STRING} (^|&)(page_id|p|cat|tag|feed|m|s|author|attachment_id|paged)=
+  RewriteRule ^(index\.php)?$ %{ENV:CM_BASE} [R=301,L,QSD]
+
+  # Vecchi PDF (wp-content/uploads/...) -> versione attuale dello stesso documento
+  RewriteRule ^wp-content/uploads/.*(DOMANDA|Moduli-iscrizione).*\.pdf$ %{ENV:CM_BASE}assets/docs/domanda-iscrizione-2027-28.pdf [R=301,L,NC]
+  RewriteRule ^wp-content/uploads/.*REGOLAMENTO.*\.pdf$ %{ENV:CM_BASE}assets/docs/regolamento-interno-2026.pdf [R=301,L,NC]
+  RewriteRule ^wp-content/uploads/.*PTOF.*\.pdf$ %{ENV:CM_BASE}assets/docs/ptof-2025-2028.pdf [R=301,L,NC]
+  RewriteRule ^wp-content/uploads/.*BILANCIO-CONSUNTIVO-2020.*\.pdf$ %{ENV:CM_BASE}assets/docs/bilancio-consuntivo-2020.pdf [R=301,L,NC]
+  RewriteRule ^wp-content/uploads/.*DL-Sostegnibis.*\.pdf$ %{ENV:CM_BASE}assets/docs/dl-sostegni-bis-contributi-anti-covid.pdf [R=301,L,NC]
+  # Pannello e feed di WordPress non esistono più: pagina 404 del sito (regola 3 sotto)
+  # <<< VECCHIO-SITO
+
+  # -------------------------------------------------------------------------
+  # Indirizzi in .html
+  # Le pagine sono file .php, ma nel browser si vedono come .html:
+  #   contatti.html  ->  esegue contatti.php
+  #   contatti.php   ->  reindirizza (301) a contatti.html
+  # Le regole funzionano in qualsiasi cartella (anche in /staging/montanari/).
+  # -------------------------------------------------------------------------
+
+  # 1) Chi apre un vecchio indirizzo .php viene mandato alla versione .html.
+  #    Solo richieste GET dirette dal browser, solo per file che esistono e solo al
+  #    primo passaggio (non dopo una riscrittura interna); invia.php resta escluso.
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteCond %{REQUEST_METHOD} =GET
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteCond %{THE_REQUEST} \.php[\s?] [NC]
+  RewriteCond %{REQUEST_URI} !/invia\.php$ [NC]
+  RewriteCond %{REQUEST_URI} ^(.+)\.php$ [NC]
+  RewriteRule ^[^/]+\.php$ %1.html [R=301,L]
+
+  # 2) Un indirizzo .html esegue il file .php con lo stesso nome, se esiste
+  #    e se non c'è un vero file .html con quel nome.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} ^(.+)\.html$
+  RewriteCond %1.php -f
+  RewriteRule ^([^/]+)\.html$ $1.php [L]
+
+  # 3) Tutto ciò che non esiste mostra la pagina 404 del sito
+  #    (anche questa funziona in qualsiasi cartella).
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ 404.php [L]
+</IfModule>
+
+# Il file di configurazione non deve essere raggiungibile dal browser
+<Files "config.php">
+  Require all denied
+</Files>
+
+# Documentazione interna (README.md ecc.) non visibile dal browser
+<FilesMatch "\.md$">
+  Require all denied
+</FilesMatch>
+
+# Niente elenco dei file nelle cartelle
+Options -Indexes
+
+# Cache per font, immagini, CSS e JS
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType application/pdf "access plus 1 week"
+</IfModule>

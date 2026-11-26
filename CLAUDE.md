@@ -1,0 +1,127 @@
+# Sito Scuola dell'Infanzia Carlo Montanari
+
+Sito istituzionale della **Scuola dell'Infanzia Paritaria Carlo Montanari**, federata FISM, Via Roma 9, 37030 San Pietro di Lavagno (VR).
+Dominio di produzione: **https://www.infanziamontanari.it** (sostituisce un vecchio WordPress).
+
+Rispondi in italiano. Chi ti scrive gestisce il sito per conto della scuola: spiega le cose in modo semplice e chiedi conferma prima di pubblicare, cancellare o cambiare dove arrivano le email.
+
+## Struttura del progetto
+
+```
+CLAUDE.md                 queste istruzioni (NON va sul server)
+.claude/skills/           procedure guidate per le operazioni ricorrenti (NON va sul server)
+strumenti/router.php      anteprima locale con le stesse regole di .htaccess
+strumenti/crea-zip.php    crea gli zip di produzione e staging in dist/
+dist/                     zip generati (NON va nel versionamento)
+montanari/                IL SITO: è il contenuto di questa cartella che va sul server
+  index.php               Home
+  la-scuola.php           La scuola (chi siamo, metodo, organi, documenti)
+  la-giornata.php         La giornata (orari, prolungato, calendario, menu)
+  iscrizioni.php          Iscrizioni (porte aperte, passaggi, rette, moduli, FAQ)
+  contatti.php            Contatti + modulo
+  invia.php               riceve il modulo e invia l'email (non è una pagina)
+  404.php                 pagina di errore
+  config.php              impostazioni del modulo contatti (destinatario, mittente...)
+  .htaccess               indirizzi .html, 404, HTTPS/www, noindex staging, protezioni,
+                          redirect dal vecchio WordPress (blocco VECCHIO-SITO)
+  robots.txt, sitemap.xml per Google (validi solo in produzione)
+  includes/header.php     <head>, barra superiore, menu (array $menu)
+  includes/footer.php     footer completo (home) o compatto (pagine interne)
+  includes/icons.php      icone SVG: icon('nome')
+  includes/map.php        riquadro mappa Google (si carica dopo il consenso cookie)
+  includes/testi/          testi approvati di privacy e cookie policy
+  includes/sovvenzioni.php dati delle sovvenzioni ricevute (Amministrazione trasparente)
+  privacy.php, cookie.php, amministrazione-trasparente.php  pagine legali
+  assets/docs/             PDF da scaricare
+  assets/css/style.css    tutto lo stile
+  assets/js/main.js       menu mobile, banner cookie, mappa
+  assets/fonts/           Fraunces (titoli) e Nunito (testi), ospitati in locale
+  assets/img/             immagini
+```
+
+È PHP semplice: nessun framework, nessun database, nessun build. Ogni pagina imposta `$pageTitle`, `$pageDescription`, `$activePage` (e `$footerFull = true` solo in home), poi include `includes/header.php` e alla fine `includes/footer.php`.
+
+## Regole importanti
+
+- **I testi sono approvati dalla scuola.** Non inventare né riscrivere contenuti: usa i testi forniti. Se manca un'informazione, lascia un segnaposto evidente (es. `[data da confermare]`) e segnalalo.
+- **Indirizzi in .html.** Nel browser le pagine si chiamano `nome.html` ma i file sono `nome.php` (ci pensa `.htaccess`). Nei link interni usa SEMPRE `.html` (es. `href="iscrizioni.html"`). Unica eccezione: `action="invia.php"` del modulo.
+- **Header e footer** usano `$base` davanti ai link (`<?= $base ?>contatti.html`) perché devono funzionare anche dalla 404 in qualsiasi sottocartella. Nelle pagine normali i link relativi semplici vanno bene.
+- **`.htaccess`** contiene i marcatori `# >>> NOINDEX` / `# <<< NOINDEX` e `# >>> SOLO-PRODUZIONE` / `# <<< SOLO-PRODUZIONE`: servono a `strumenti/crea-zip.php` per generare la versione di staging. Non toglierli.
+- **Redirect dal vecchio sito**: tutti nel blocco `# >>> VECCHIO-SITO` di `.htaccess` (vecchi `?page_id=`, `?p=`, `?cat=` e PDF in `wp-content/uploads/`). È l'unica fonte: anche `strumenti/router.php` lo legge per l'anteprima locale. Usare sempre `%{ENV:CM_BASE}` davanti alla destinazione e i flag `[R=301,L,QSD]` (più `NE` se c'è un `#`).
+- **Non cambiare** il destinatario delle email in `config.php`, né le regole HTTPS/www, senza conferma esplicita.
+- **Nessun servizio esterno** senza consenso: niente Google Fonts, analytics o script di terzi. L'unico servizio esterno è la mappa di Google, caricata solo dopo il consenso nel banner cookie. Se se ne aggiunge uno, va gestito allo stesso modo e citato nella cookie policy.
+- **Testi accessibili**: un solo `<h1>` per pagina, `alt` sulle immagini con contenuto, `alt=""` su quelle decorative, contrasti adeguati.
+- **Foto di bambini**: pubblicarle solo se la scuola conferma di avere la liberatoria dei genitori.
+
+## Stile grafico (in `assets/css/style.css`)
+
+Colori (variabili CSS): sfondo crema `--bg #fef7ed`, testo `--ink #292631`, accento terracotta `--accent #b3462f`, giallo `--yellow #f3c95d`, pastelli `--yellow-soft`, `--pink-soft`, `--green-soft`, `--blue-soft`.
+Titoli in Fraunces, testi in Nunito. Angoli arrotondati (20–32px), card bianche con ombra leggera.
+
+Componenti pronti da riusare (guarda le pagine esistenti per l'HTML):
+`.section` + `.container` (sezione) · `.eyebrow` (etichetta sopra il titolo) · `.h-section` · `.lead` ·
+`.btn` con `.btn--primary` / `--outline` / `--dark` / `--light` / `--yellow` / `--ghost` (+ `--small`) ·
+`.grid .grid--2/3/4` · `.card` · `.quick` (card colorata con link) · `.service` · `.pastel-card` ·
+`.panel-dark` · `.cta-yellow` · `.news` · `.page-head` + `.breadcrumb` + `.pills` · `.split` + `.timeline` ·
+`.schedule` · `.aside-card` · `.hero-yellow` + `.openday` · `.step` · `.fees` · `.doc-list` · `.faq` (con `<details>`) ·
+classi colore `bg-yellow` / `bg-pink` / `bg-green` / `bg-blue`.
+
+## Comandi
+
+Anteprima locale (serve PHP 8 installato), dalla cartella principale del progetto:
+
+```bash
+php -S localhost:8080 -t montanari strumenti/router.php
+```
+
+Poi apri http://localhost:8080. Il router riproduce le regole di `.htaccess` (indirizzi .html, 404). Il modulo contatti in locale non invia email (manca il server di posta): è normale.
+
+Controllo sintassi di tutti i file PHP:
+
+```bash
+for f in montanari/*.php montanari/includes/*.php strumenti/*.php; do php -l "$f"; done
+```
+
+Creare gli zip da caricare:
+
+```bash
+php strumenti/crea-zip.php
+```
+
+Genera `dist/sito-montanari-produzione.zip` e `dist/sito-montanari-staging.zip`.
+
+## Pubblicazione
+
+- **Produzione**: contenuto di `montanari/` (dallo zip di produzione) nella cartella principale del dominio www.infanziamontanari.it.
+- **Staging (server di prova)**: zip di staging, in una sottocartella del server di prova (es. `/staging/montanari/`). Blocca Google su tutto.
+- Caricare sempre anche `.htaccess`: inizia con il punto e molti client FTP lo nascondono.
+- Mai caricare sul server `CLAUDE.md`, `.claude/`, `strumenti/`, `dist/`.
+- Dopo ogni pubblicazione verifica: home, una pagina interna, un indirizzo inesistente (deve dare la 404 del sito), un vecchio indirizzo `.php` (deve portare al `.html`).
+
+Le procedure passo passo sono negli skill: `/pubblica`, `/nuova-pagina`, `/aggiorna-date`, `/collega-documenti`.
+
+## Stato attuale e cose da completare
+
+Pagine online: Home, La scuola, La giornata, Iscrizioni, Contatti, Privacy policy (`privacy.php`), Cookie policy (`cookie.php`), Amministrazione trasparente (`amministrazione-trasparente.php`). Rimandate a una fase successiva: **Servizi** e **Notizie** (tolte dal menu).
+
+- I testi di privacy e cookie policy sono in `includes/testi/` (approvati dalla scuola il 24/11/2026): modificarli solo su indicazione della scuola.
+- Le sovvenzioni ricevute sono in `includes/sovvenzioni.php` (un blocco per anno, il più recente in cima). Alcune date di incasso cadono nell'anno successivo (es. 2024: 25/10/2025): la scuola ha confermato di lasciarle così.
+- Bilancio: c'è solo il consuntivo 2020 (ripreso dal vecchio sito). I bilanci successivi si aggiungono solo quando lo chiede la scuola.
+- Calendario 2026-27: contiene due giorni della settimana sbagliati (7 ottobre e 5 novembre); la scuola ha deciso di lasciarlo così. Il posticipo corretto è fino alle 17:30.
+- Dichiarazione di accessibilità: la scuola ha deciso di non pubblicarla; il link è stato tolto dal footer.
+- PDF in `assets/docs/`: domanda di iscrizione 2027-28 (scansione ricompressa da 8 a 4 MB), PTOF 2025-2028 (aggiornamento 2026/27), regolamento interno (edizione 2026), calendario attività 2026-27, locandina porte aperte 2027-28, DL Sostegni bis, bilancio consuntivo 2020.
+- Logo: `assets/img/logo-illustrazione.png` (solo il disegno, senza scritta, accanto al nome nell'header); favicon dalla casetta del logo (`favicon.ico`, `favicon.png`, `apple-touch-icon.png`).
+- Foto home: `assets/img/scuola-giardino.jpg` (foto reale della scuola, 2012), confermata dalla scuola.
+- Correzioni ai testi legali del 25/11/2026 (telefono, modulo di iscrizione in PDF, solo Facebook, mappa anche in home): approvate dalla scuola.
+
+Da completare (dipende dai materiali della scuola):
+
+- Menu stagionale: tolto dal sito su richiesta della scuola (lo stanno rivedendo); quando arriva, ricollegarlo in La scuola (Documenti) e La giornata (riquadro Menu stagionale).
+- Email del modulo contatti: destinatario e mittente sono entrambi scmontanari@tiscali.it (decisione della scuola, niente casella noreply, PEC non mostrata sul sito). Dopo la pubblicazione fare un invio reale di prova: se il messaggio finisce nello spam o non arriva, proporre alla scuola una casella del dominio come mittente.
+- Date delle porte aperte: 28 novembre 2026 e 16 gennaio 2027 → dopo ogni data aggiornare con `/aggiorna-date` (anche la notizia in home con la locandina).
+
+La checklist condivisa con la scuola è nel documento "Nuovo sito Scuola Carlo Montanari – cosa manca per andare online".
+
+## Contatti della scuola (dati pubblici usati nel sito)
+
+Telefono 045 982353 · Email scmontanari@tiscali.it · Segreteria lun–ven 9:00–12:00 · C.F. 80031580238 · P.IVA 01540610233 · Facebook facebook.com/InfanziaMontanari
