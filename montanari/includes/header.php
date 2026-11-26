@@ -14,6 +14,14 @@ function e(string $s): string
 
 $activePage = $activePage ?? '';
 
+// Indirizzo di CSS/JS con la data di modifica del file: dopo ogni aggiornamento
+// il browser scarica la versione nuova invece di usare quella in memoria.
+function asset(string $base, string $path): string
+{
+    $file = dirname(__DIR__) . '/' . $path;
+    return $base . $path . (is_file($file) ? '?v=' . filemtime($file) : '');
+}
+
 // Percorso della cartella del sito (es. "/" in produzione, "/staging/montanari/" sul server di prova).
 // Serve per link e risorse che devono funzionare anche dalla pagina 404 a qualsiasi profondità.
 $base = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/') . '/';
@@ -53,11 +61,11 @@ $fullTitle = ($activePage === 'home' ? '' : $pageTitle . ' · ') . 'Scuola dell\
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="<?= $base ?>assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="<?= $base ?>assets/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="<?= $base ?>assets/css/style.css">
+  <link rel="stylesheet" href="<?= asset($base, 'assets/css/style.css') ?>">
   <link rel="icon" href="<?= $base ?>assets/img/favicon.ico" sizes="any">
   <link rel="icon" href="<?= $base ?>assets/img/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="<?= $base ?>assets/img/apple-touch-icon.png">
-  <script src="<?= $base ?>assets/js/main.js" defer></script>
+  <script src="<?= asset($base, 'assets/js/main.js') ?>" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#contenuto">Vai al contenuto</a>
