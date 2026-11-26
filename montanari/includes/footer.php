@@ -49,7 +49,6 @@ $footerFull = $footerFull ?? false;
       <a href="<?= $base ?>privacy.html">Privacy</a>
       <a href="<?= $base ?>cookie.html">Cookie</a>
       <a href="#" data-cookie-settings>Preferenze cookie</a>
-      <a href="#">Accessibilità</a>
     </span>
   </div>
 </footer>
