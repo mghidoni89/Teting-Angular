@@ -10,10 +10,11 @@ return [
     // Indirizzo che riceve i messaggi inviati dal modulo "Scrivi alla segreteria".
     'destinatario' => 'scmontanari@tiscali.it',
 
-    // Mittente tecnico delle email. Deve essere un indirizzo del dominio del sito
-    // (es. noreply@infanziamontanari.it), altrimenti molti provider scartano il messaggio.
+    // Mittente delle email. Per decisione della scuola (26/11/2026) è lo stesso indirizzo
+    // della segreteria, senza casella noreply. Se i messaggi finiscono nello spam o non
+    // arrivano, valutare una casella del dominio (es. noreply@infanziamontanari.it).
     // La risposta va comunque al visitatore: il suo indirizzo è impostato come Reply-To.
-    'mittente' => 'noreply@infanziamontanari.it',
+    'mittente' => 'scmontanari@tiscali.it',
     'mittente_nome' => 'Sito Scuola Carlo Montanari',
 
     // Prefisso dell'oggetto delle email ricevute.

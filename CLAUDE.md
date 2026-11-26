@@ -111,12 +111,13 @@ Pagine online: Home, La scuola, La giornata, Iscrizioni, Contatti, Privacy polic
 - Dichiarazione di accessibilità: la scuola ha deciso di non pubblicarla; il link è stato tolto dal footer.
 - PDF in `assets/docs/`: domanda di iscrizione 2027-28 (scansione ricompressa da 8 a 4 MB), PTOF 2025-2028 (aggiornamento 2026/27), regolamento interno (edizione 2026), calendario attività 2026-27, locandina porte aperte 2027-28, DL Sostegni bis, bilancio consuntivo 2020.
 - Logo: `assets/img/logo-illustrazione.png` (solo il disegno, senza scritta, accanto al nome nell'header); favicon dalla casetta del logo (`favicon.ico`, `favicon.png`, `apple-touch-icon.png`).
-- Foto home: `assets/img/scuola-giardino.jpg` (foto reale della scuola, 2012).
+- Foto home: `assets/img/scuola-giardino.jpg` (foto reale della scuola, 2012), confermata dalla scuola.
+- Correzioni ai testi legali del 25/11/2026 (telefono, modulo di iscrizione in PDF, solo Facebook, mappa anche in home): approvate dalla scuola.
 
 Da completare (dipende dai materiali della scuola):
 
 - Menu stagionale: tolto dal sito su richiesta della scuola (lo stanno rivedendo); quando arriva, ricollegarlo in La scuola (Documenti) e La giornata (riquadro Menu stagionale).
-- Mittente email: in `config.php` `mittente` deve essere una casella del dominio (es. noreply@infanziamontanari.it), da verificare con un invio reale dopo la pubblicazione.
+- Email del modulo contatti: destinatario e mittente sono entrambi scmontanari@tiscali.it (decisione della scuola, niente casella noreply, PEC non mostrata sul sito). Dopo la pubblicazione fare un invio reale di prova: se il messaggio finisce nello spam o non arriva, proporre alla scuola una casella del dominio come mittente.
 - Date delle porte aperte: 28 novembre 2026 e 16 gennaio 2027 → dopo ogni data aggiornare con `/aggiorna-date` (anche la notizia in home con la locandina).
 
 La checklist condivisa con la scuola è nel documento "Nuovo sito Scuola Carlo Montanari – cosa manca per andare online".
